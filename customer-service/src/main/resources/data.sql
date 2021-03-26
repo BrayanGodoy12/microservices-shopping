@@ -1,3 +1,4 @@
+
 INSERT INTO tbl_regions (id, name) VALUES (1, 'Sudamérica');
 INSERT INTO tbl_regions (id, name) VALUES (2, 'Centroamérica');
 INSERT INTO tbl_regions (id, name) VALUES (3, 'Norteamérica');

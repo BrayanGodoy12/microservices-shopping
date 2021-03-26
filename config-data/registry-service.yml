@@ -1,5 +1,6 @@
 server:
   port: 8099
+  wait-time-in-ms-when-sync-empty: 0
 
 eureka:
   instance:

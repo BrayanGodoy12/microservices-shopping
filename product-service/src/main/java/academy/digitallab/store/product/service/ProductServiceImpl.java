@@ -4,15 +4,18 @@ import academy.digitallab.store.product.entity.Category;
 import academy.digitallab.store.product.entity.Product;
 import academy.digitallab.store.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl  implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
 
     private final ProductRepository productRepository;
@@ -38,7 +41,7 @@ public class ProductServiceImpl  implements ProductService{
     @Override
     public Product updateProduct(Product product) {
         Product productDB = getProduct(product.getId());
-        if (null == productDB){
+        if (null == productDB) {
             return null;
         }
         productDB.setName(product.getName());
@@ -51,7 +54,7 @@ public class ProductServiceImpl  implements ProductService{
     @Override
     public Product deleteProduct(Long id) {
         Product productDB = getProduct(id);
-        if (null == productDB){
+        if (null == productDB) {
             return null;
         }
         productDB.setStatus("DELETED");
@@ -65,11 +68,13 @@ public class ProductServiceImpl  implements ProductService{
 
     @Override
     public Product updateStock(Long id, Double quantity) {
+        log.info("Cantidad a actualizar  {}", quantity);
+        log.info("Id a actualizar {}", id);
         Product productDB = getProduct(id);
-        if (null == productDB){
+        if (null == productDB) {
             return null;
         }
-        Double stock =  productDB.getStock() + quantity;
+        Double stock = productDB.getStock() + quantity;
         productDB.setStock(stock);
         return productRepository.save(productDB);
     }
